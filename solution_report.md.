@@ -1,6 +1,6 @@
-Task 1: Business Domain Selection
+# Task 1: Business Domain Selection
 
-Selected Domain: Education
+## Selected Domain: Education
 
 The education sector is increasingly adopting digital platforms for learning, communication, and student support. With the rise of online classes, learning management systems, and student feedback channels, large volumes of textual data are generated daily.
 
@@ -11,3 +11,6 @@ Manual handling of this data is time-consuming and inconsistent
 There is a strong need to improve student experience and response time
 
 An AI-based solution in the education domain can help institutions better understand student needs, automate support systems, and make data-driven decisions to enhance learning outcomes.
+
+---
+
