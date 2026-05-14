@@ -14,3 +14,302 @@ An AI-based solution in the education domain can help institutions better unders
 
 ---
 
+# Task 2: Business Problem Definition
+
+## Problem Being Solved
+
+Educational institutions receive a large volume of student queries, complaints, and feedback through emails, portals, and chat systems. These messages often include requests related to admissions, course content, technical issues, and grievances.
+
+Currently, handling this data manually leads to delays, inconsistent responses, and poor prioritization. There is no efficient system to automatically categorize or understand the urgency and sentiment of these messages.
+
+The problem is to build a system that can automatically analyze and classify student messages to improve response efficiency and overall student experience.
+
+
+## Users/Stakeholders
+
+The key stakeholders involved are:
+
+- **Students:** who expect timely and accurate responses to their queries
+- **Faculty and Support Staff:** responsible for addressing student concerns
+- **Administrative Teams:** who manage operations and student satisfaction
+- **Institution Management:** interested in insights from student feedback for decision-making
+
+
+## Current Manual Process
+
+At present, student queries are handled manually:
+
+- Messages are received via email, portals, or chat systems
+- Support staff read each message individually
+- Queries are manually categorized and forwarded to relevant departments
+- Responses are drafted and sent back to students
+
+This process is heavily dependent on human effort and judgment.
+
+
+## Limitations of teh Current Process
+
+The existing system has several limitations: 
+- **Time-consuming:** Large volumes of messages slow down response time
+- **Inconsistent categorization:** Different staff may interpret queries differently
+- **Poor prioritization:** Urgent issues may not be identified quickly
+- **Scalability issues:** As student numbers grow, manual handling becomes inefficient
+- **Lack of insights:** No structured way to analyze trends in student feedback
+
+---
+
+# Task 3: Identify the AI Task Type
+
+## Selected AI Task Type: Text Classification (with Sentiment Analysis)
+
+The problem is best framed as a text classification task, where student messages are automatically categorized into predefined classes such as queries, complaints, technical issues, or feedback.
+
+In addition, sentiment analysis can be applied to understand the emotional tone of the message (positive, neutral, or negative), which helps in prioritizing urgent or critical cases.
+
+
+## Why This Task Type is Suitable
+
+Student queries and feedback are primarily unstructured text data. To make this data usable for automated systems, it must be converted into structured categories.
+
+Text classification is suitable because:
+
+- It enables automatic categorization of incoming messages into relevant departments
+- It reduces the need for manual sorting and routing of queries
+- It improves response time by directing queries to the right team instantly
+
+Sentiment analysis complements this by:
+
+- Identifying frustrated or dissatisfied students
+- Helping prioritize urgent or negative cases
+- Providing insights into overall student satisfaction
+
+Together, these approaches allow the institution to process large volumes of student communication efficiently while improving service quality and decision-making.
+
+---
+
+# Task 4: Data Requirement Plan
+
+## Type of Data Needed
+
+The solution requires **text-based data** generated from student interactions. This includes:
+- Student queries and complaints
+- Feedback submitted through portals or surveys
+- Emails and chat messages from students
+
+
+## Structured or Unstructured Data
+
+The primary data is **unstructured text data,** as student messages are written in natural language.
+
+However, it may also include some **structured metadata,** such as:
+
+- Ticket ID
+- Timestamp
+- Communication channel (email, chat, portal)
+
+
+## Input Features
+
+The key input features for the model include:
+
+- **Text content** (student message) – main feature
+- **Word count / message length**
+- **Channel type** (optional)
+- **Keywords or extracted tokens** after preprocessing
+
+
+## Target Variable / Labels
+
+The model will predict:
+- **Category labels** (e.g., query, complaint, technical issue, feedback)
+- **Sentiment labels** (positive, neutral, negative)
+
+These labels enable automated classification and prioritization of student messages.
+
+
+## Data Collection Method
+
+Data can be collected from:
+- Learning management systems (LMS)
+- Student support portals
+- Email systems
+- Chat platforms used by institutions
+
+Historical data can be used to train the model, while new incoming data can be processed in real-time.
+
+
+## Data Quality Risks
+
+Several risks must be considered:
+
+- **Noisy text data** (spelling errors, informal language)
+- **Imbalanced classes** (some categories may have more data than others)
+- **Incomplete or missing messages**
+- **Ambiguous queries** that are difficult to classify
+- **Bias in data,** where certain types of issues are overrepresented
+
+Addressing these risks is important to ensure accurate and fair model performance.
+
+# Task 5: Model Recommendation
+## **Recommended Model: Transformer-based Model (with Logistic Regression as Baseline)**
+
+For this problem, a combination of models can be used:
+
+- A **baseline model** such as **Logistic Regression with TF-IDF features** for simplicity and quick implementation
+- An **advanced model** such as a **Transformer-based model (e.g., BERT)** for higher accuracy and better language understanding
+
+
+## Why this Model is Appropriate
+
+The task involves understanding and classifying natural language text, which requires capturing context, meaning, and relationships between words.
+
+**Baseline Model (Logistic Regression + TF-IDF):**
+- Easy to implement and computationally efficient
+- Provides a good starting point for text classification
+- Works well for structured and moderately sized datasets
+
+**Advanced Model (Transformer-based):**
+- Captures contextual meaning of words (not just frequency)
+- Handles complex sentence structures and semantics
+- Performs significantly better on tasks like sentiment analysis and text classification
+- Can generalize better to unseen data
+
+
+## Final Justification
+
+While traditional models like Logistic Regression are useful for establishing a baseline, a **Transformer-based model is more suitable for production-level deployment** due to its ability to understand context and improve classification accuracy.
+
+This combination ensures both:
+
+- **Efficiency in development (baseline model)**
+- **High performance in real-world usage (advanced model)**
+
+---
+
+# Task 6: Evaluation Plan
+
+## Technical Metrics
+
+The performance of the model will be evaluated using standard machine learning metrics:
+- **Accuracy:** Overall correctness of predictions
+- **Precision:** How many predicted categories are actually correct
+- **Recall:** Ability to identify all relevant cases (important for complaints)
+- **F1-score:** Balance between precision and recall
+- **Confusion Matrix:** To analyze misclassification patterns
+
+For sentiment analysis, these metrics will ensure that the model correctly identifies positive, neutral, and negative sentiments.
+
+
+## Business Metrics
+
+Beyond technical performance, the solution will be evaluated based on business impact:
+
+- **Reduction in response time** to student queries
+- **Increase in query resolution efficiency**
+- **Improvement in student satisfaction scores**
+- **Reduction in manual workload for support staff**
+- **Better prioritization of urgent or negative cases**
+
+These metrics help determine whether the AI solution adds real value to the institution.
+
+
+## Possible Failure Cases
+
+The model may face challenges in certain scenarios:
+
+- **Ambiguous messages** that lack clear context
+- **Mixed sentiment** within the same message
+- **Short or incomplete queries**
+- **Use of slang, abbreviations, or spelling errors**
+- **Domain-specific terms not seen during training**
+
+Identifying these cases helps improve the robustness of the system.
+
+
+## Human Review / Validation Process
+
+To ensure reliability and trust in the system:
+- Critical or high-risk cases (e.g., highly negative sentiment) should be **reviewed by human staff**
+- A **feedback loop** should be established where incorrect predictions are corrected and used to retrain the model
+- Periodic **manual audits** should be conducted to monitor model performance
+- Human oversight ensures that the system remains accurate, fair, and aligned with institutional goals
+
+---
+
+# Task 7: Responsible AI Considerations
+
+## Bias in Data
+
+The training data may contain biases, such as overrepresentation of certain types of student complaints or communication styles. This can lead the model to favor certain categories or misinterpret messages from specific groups of students.
+
+To address this, it is important to use diverse and balanced datasets and regularly monitor model outputs.
+
+
+## Incorrect Predictions
+
+The model may misclassify messages or incorrectly identify sentiment, especially in cases of ambiguous or complex language. This could result in delays or improper handling of student concerns.
+
+To reduce this risk, the system should include confidence thresholds and allow human intervention for uncertain predictions.
+
+
+## Privacy Concerns
+
+Student messages may contain sensitive personal information. Improper handling of this data can lead to privacy violations.
+
+Data should be anonymized where possible, and strict data protection policies must be followed to ensure confidentiality and security.
+
+
+## Over-reliance on AI
+
+There is a risk that institutions may depend too heavily on automated systems, reducing human involvement in decision-making.
+
+AI should be used as a support tool rather than a replacement, ensuring that human judgment remains part of the process.
+
+
+## Impact on Users
+
+Incorrect classification or delayed handling of queries may negatively affect student experience and trust in the institution.
+
+The system must be designed to enhance user experience, not hinder it, by ensuring accuracy and responsiveness.
+
+
+## Need for Human Oversight
+
+Human review is essential, especially for critical or sensitive cases. A hybrid system where AI assists humans ensures better reliability and accountability.
+
+A human-in-the-loop approach ensures accountability and prevents critical errors in automated decisions.
+
+Regular monitoring and feedback loops should be implemented to continuously improve the system.
+
+---
+
+# Task 8: Final Solution Summary
+
+## Problem
+
+Educational institutions receive a high volume of student queries through multiple channels such as chat, email, and portals. Manually reviewing and responding to these messages is time-consuming, inconsistent, and prone to delays, leading to poor student experience.
+
+
+## Proposed AI Solution
+
+An NLP-based automated system that classifies student messages based on sentiment and intent. The system will preprocess incoming text, convert it into numerical representations, and use a trained model to categorize messages. Based on the classification, queries can be prioritized and routed to the appropriate department.
+
+
+## Required Data
+
+The system requires historical student interaction data, including text messages, communication channels, and labeled categories such as sentiment or query type. The data is primarily unstructured text and must be cleaned and preprocessed before use.
+
+
+## Model Recommendation
+
+A transformer-based model (such as BERT) is recommended due to its ability to understand context and handle complex language patterns. For simpler implementation, a TF-IDF + Logistic Regression baseline can be used as a starting point.
+
+
+## Expected Business Impact
+
+The solution will reduce response time, improve efficiency in handling student queries, and enhance overall student satisfaction. It will also allow institutions to scale support operations without significantly increasing human resources. This also enables data-driven decision-making by identifying recurring student issues and trends.
+
+
+## Risks and Mitigation Plan
+
+Potential risks include biased predictions, incorrect classifications, and privacy concerns. These can be mitigated by using diverse training data, implementing human review mechanisms, and ensuring strict data protection practices. Regular monitoring and model updates will further improve reliability.
